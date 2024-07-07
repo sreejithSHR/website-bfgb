@@ -1,4 +1,3 @@
-import type { Metadata } from "next"
 import {
   ClerkProvider,
   SignInButton,
@@ -6,30 +5,30 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/nextjs"
+import { dark } from "@clerk/themes"
 import "./globals.css"
+import { Inter } from "next/font/google"
+import { ThemeProvider } from "next-themes"
 
-export const metadata: Metadata = {
-  title: "Plura Website builder",
-  description: "SAAS Website Builder with a focus on project management",
-}
+const font = Inter({ subsets: ["latin"] })
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <body>
-          <SignedOut>
-            <SignInButton />
-          </SignedOut>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
-
-          {children}
+    <ClerkProvider appearance={{ baseTheme: dark }}>
+      <html lang="en" suppressHydrationWarning>
+        <body className={font.className}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
