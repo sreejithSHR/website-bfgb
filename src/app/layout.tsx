@@ -6,7 +6,7 @@ import { Metadata } from "next"
 const font = DM_Sans({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Plura Agency",
-  description: "All in one agency solution",
+  description: "All in one agency",
 }
 
 export default function RootLayout({
