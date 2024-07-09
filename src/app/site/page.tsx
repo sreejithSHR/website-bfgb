@@ -3,6 +3,13 @@ import Image from "next/image"
 import { pricingCards } from "@/lib/constants"
 import PricingCard from "@/components/site/generic/pricing-card"
 
+/**
+ * Home page for the site landing page
+ * @component
+ * @version 1.0.0
+ *
+ * @returns The Home page
+ */
 export default function Home() {
   return (
     <>

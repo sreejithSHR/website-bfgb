@@ -1,8 +1,8 @@
-import "./globals.css"
-import { Inter } from "next/font/google"
 import { ThemeProvider } from "next-themes"
+import { DM_Sans } from "next/font/google"
+import "./globals.css"
 
-const font = Inter({ subsets: ["latin"] })
+const font = DM_Sans({ subsets: ["latin"] })
 
 export default function RootLayout({
   children,

@@ -1,6 +1,12 @@
+import { NextRequest, NextResponse } from "next/server"
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server"
 
-const isPublicRoute = createRouteMatcher(["/site", "/api/uploadthing"])
+const isPublicRoute = createRouteMatcher([
+  "/site",
+  "/api/uploadthing",
+  "/agency/sign-in",
+  "/agency/sign-up",
+])
 
 /**
  * Handles authentication and authorization with Clerk.
@@ -11,12 +17,13 @@ const isPublicRoute = createRouteMatcher(["/site", "/api/uploadthing"])
  *
  * @returns NextMiddlewareReturn - Next middleware return
  */
-export default clerkMiddleware((auth, request) => {
-  if (!isPublicRoute(request)) {
-    auth().protect()
-  }
-})
+export default clerkMiddleware(
+  (auth, request) => {
+    if (!isPublicRoute(request)) {
+      // TODO: auth().protect()
+    }
+  },
+  { debug: true }
+)
 
-export const config = {
-  matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
-}
+export const config = { matcher: ["/((?!...|_next).)", "/", "/(api|trpc)(.)"] }
